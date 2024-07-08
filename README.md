@@ -42,7 +42,7 @@ fineRADstructure.txt
 
 ***
 
-***Notes***
+**Notes**
 
 ***
 
