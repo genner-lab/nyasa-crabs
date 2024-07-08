@@ -4,12 +4,6 @@ Evolution of freshwater crabs paper
 
 Data and code for Layfield et al. "Ecological speciation in East African freshwater crabs of the genus Arcopotamonautes Bott, 1955 across a lake-river boundary in the Lake Malawi catchment (Potamoidea: Potamonautidae: Potamonatinae)"
 
-***Notes***
-
-Analysis 1 refers to A.montivagus I vs A.montivagus II vs A.orbitospinus
-
-Analysis 2 refers to A.montivagus I vs vs A.orbitospinus
-
 ***
 
 **Assets**
@@ -41,6 +35,13 @@ File: Analysis_2_crabsplink.4.P containing XX specimens to compile admixture tes
 **Scripts**
 
 ***
+
+***Notes***
+
+Analysis 1 refers to A.montivagus I vs A.montivagus II vs A.orbitospinus
+
+Analysis 2 refers to A.montivagus I vs vs A.orbitospinus
+
 
 Admixture_and_PCA.R 
 
