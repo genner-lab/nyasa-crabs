@@ -42,7 +42,7 @@ Admixture_and_PCA.R The R code used for the analyses of the population structure
 
 fineRADstructure.txt Script used for FineRADstructure analysis
 
-Morphology.R The R code used for the analyses of the morphology
+Morphology.R The R code used for the analyse for morphological testing
 
 ***
 
