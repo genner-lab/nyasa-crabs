@@ -12,21 +12,19 @@ Data and code for Layfield et al. "Ecological speciation in East African freshwa
 
 File: params-crabs.txt The ipyrad parameter file (run denovo).
 
-File: crabs.vcf: ipyrad output variant file, XX specimens including outgroup 
+File: crabs.vcf: ipyrad output variant file, 73 specimens including _A.bellarussus_ and outgroup _M.choloensis_
 
-File: crabs_clean.vcf ipyrad output variant file, XX specimens excluding outgroup 
+File: crabs_analysis1.vcf ipyrad output variant file, 61 specimens including the _A.montivagus_ group I, _A.montivagus_ group II, and _A.orbitospinus_ groups
 
-File: crabs_analysis1.vcf ipyrad output variant file, XX specimens including the _A.montivagus_ group I, _A.montivagus_ group II, and _A.orbitospinus_ groups
-
-File: crabs_analysis2.vcf ipyrad output variant file, XX specimens including the _A.montivagus_ group I and _A.orbitospinus_ groups
+File: crabs_analysis2.vcf ipyrad output variant file, 33 specimens including the _A.montivagus_ group I and _A.orbitospinus_ groups
 
 File: crabs.snps, ipyrad output SNPs file.
 
 File: raxml_snps_invariant_sites_removed.phylip.treefile containing XX specimens, generated from SNPs file, invariant sites removed.
 
-File: Analysis_1_crabsplinkPCA.eigenval containing PCA eigenvalues from XX specimens 
+File: Analysis_1_crabsplinkPCA.eigenval containing PCA eigenvalues from 61 specimens 
 
-File: Analysis_2_crabsplinkPCA.eigenval containing PCA eigenvalues from XX specimens 
+File: Analysis_2_crabsplinkPCA.eigenval containing PCA eigenvalues from 33 specimens 
 
 File: Analysis_2_crabsplink.4.P containing XX specimens to compile admixture test in analysis 2
 
@@ -36,9 +34,12 @@ File: Analysis_2_crabsplink.4.P containing XX specimens to compile admixture tes
 
 ***
 
-Admixture_and_PCA.R 
+Admixture_and_PCA.R The R code used for the analyses of the population structure
 
-fineRADstructure.txt
+fineRADstructure.txt Script used for FineRADstructure analysis
+
+Morphology.R The R code used for the analyses of the morphology
+
 
 ***
 
