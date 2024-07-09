@@ -36,7 +36,7 @@ File: Analysis_2_crabsplink.4.P Plink file containing 33 specimens to compile ad
 
 ***
 
-ddRAD_analysis.txt Script used for population structure
+ddrad_analysis.txt Script used for population structure
 
 Admixture_and_PCA.R The R code used for the analyses of the population structure
 
