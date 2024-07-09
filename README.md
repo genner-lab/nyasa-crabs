@@ -14,6 +14,8 @@ File: params-crabs.txt The ipyrad parameter file (run denovo).
 
 File: crabs.vcf: ipyrad output variant file, 73 specimens including _A.bellarussus_ and outgroup _M.choloensis_
 
+File: crabs_without_Choloensis.vcf: ipyrad output variant file, 72 specimens excluding outgroup _M.choloensis_
+
 File: crabs_analysis1.vcf ipyrad output variant file, 61 specimens including the _A.montivagus_ group I, _A.montivagus_ group II, and _A.orbitospinus_
 
 File: crabs_analysis2.vcf ipyrad output variant file, 33 specimens including the _A.montivagus_ group I and _A.orbitospinus_
