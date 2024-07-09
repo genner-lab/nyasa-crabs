@@ -1,0 +1,35 @@
+##fineRADstructure
+
+#Step 1: Format VCF from ipyrad for fineRADstructure
+
+./RADpainter hapsFromVCF crabs_without_Choloensis.vcf > crabs_without_Choloensis.txt
+./RADpainter hapsFromVCF crabs_analysis1.vcf > crabs_analysis1.txt
+./RADpainter hapsFromVCF crabs_analysis2.vcf > crabs_analysis2.txt
+
+#Step 2: Reorder loci according to linkage disequilibrium, as no reference genome
+
+Rscript sampleLD.R -s 1 -n 500 crabs_without_Choloensis.txt crabs_without_Choloensis_reordered.txt
+Rscript sampleLD.R -s 1 -n 500 crabs_analysis1.txt crabs_analysis1_reordered.txt
+Rscript sampleLD.R -s 1 -n 500 crabs_analysis2.txt crabs_analysis2_reordered.txt
+
+#Step 3: Calculate the co-ancestry matrix
+
+./RADpainter paint crabs_without_Choloensis_reordered.txt
+./RADpainter paint crabs_analysis1_reordered.txt
+./RADpainter paint crabs_analysis2_reordered.txt
+
+
+#Step 4: Assign individuals to populations
+./finestructure -x 100000 -y 100000 -z 1000 crabs_without_Choloensis_reordered_chunks.out crabs_without_Choloensis_reordered_chunks.mcmc.xml
+./finestructure -x 100000 -y 100000 -z 1000 crabs_analysis1_reordered_chunks.out crabs_analysis1_reordered_chunks.mcmc.xml
+./finestructure -x 100000 -y 100000 -z 1000 crabs_analysis2_reordered_chunks.out crabs_analysis2_reordered_chunks.mcmc.xml
+
+#Step 5: Tree Building
+
+./finestructure -m T -x 10000 crabs_without_Choloensis_reordered_chunks.out crabs_without_Choloensis_reordered_chunks.mcmc.xml crabs_without_Choloensis_reorderedchunks.mcmcTree.xml
+./finestructure -m T -x 10000 crabs_analysis1_reordered_chunks.out crabs_analysis1_reordered_chunks.mcmc.xml crabs_analysis1_reordered_chunks.mcmcTree.xml
+./finestructure -m T -x 10000 crabs_analysis2_reordered_chunks.out crabs_analysis2_reordered_chunks.mcmc.xml crabs_analysis2_reordered_chunks.mcmcTree.xml
+
+#Step 6: Use the fineRADstructurePlot.R in R to generate plots. The code is provided at https://github.com/millanek/fineRADstructure
+
+#End of analysis
