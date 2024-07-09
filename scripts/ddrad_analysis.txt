@@ -1,0 +1,152 @@
+
+##Phylogeny##
+#Remove invariant bias - convert SNPs to phylip format in Mega
+#Remove any invariant bias from SNPS ipyrad file and convert to phylip via raxml_ascbias 
+python3 ./ascbias.py -p crabs.snps -o raxml_snps_test1_invariant_sites_removed.phylip
+
+#Run through iqtree 
+iqtree -s raxml_snps_test1_invariant_sites_removed.phylip -m TEST -bb 1000
+
+#Admixture and PCA analysis
+#Remove outgroup taxa - Choloensis from vcf file (ipyrad output) using vcftools
+bgzip -c crabs.vcf > crabs.vcf.gz
+tabix -p vcf crabs.vcf.gz
+bcftools view -s ^Choloensis crabs.vcf.gz > crabs_without_Choloensis.vcf
+
+#All samples
+#VCF to plink format and clean up + linkage disequilibirum
+ plink --allow-extra-chr --vcf crabs_without_Choloensis.vcf --double-id --recode12 --allow-no-sex --no-sex --no-parents --make-bed --no-fid --geno 0.9 --maf 0.05 --indep-pairwise 50 2 0.2 --no-pheno --out crabsplink
+
+#Plink to PCA
+ plink --allow-extra-chr --bfile crabsplink --pca --out crabsplinkPCA
+
+ ./admixture crabsplink.ped 3
+ ./admixture crabsplink.ped 4
+ ./admixture crabsplink.ped 5
+./admixture crabsplink.ped --cv=10 -B2000 --seed=X
+
+
+#Subset for just Rungwe/Montivagus/Lirrangesis (Analysis 1)
+bcftools view -s ^Choloensis,Rukwa_3,Rukwa_2,Rukwa_1,Kalembo_1,Nkokwa_2,Itupi_1,Kalobe_6,Kalobe_1,Kalobe_3,Kalobe_2,Kalobe_19 crabs.vcf.gz > crabs_analysis1.vcf
+
+#VCF to plink format and clean up + linkage disequilibirum
+ plink --allow-extra-chr --vcf crabs_analysis1.vcf --double-id --recode12 --allow-no-sex --no-sex --no-parents --make-bed --no-fid --geno 0.9 --maf 0.05 --indep-pairwise 50 2 0.2 --no-pheno --out crabsplink
+
+#Plink to PCA
+ plink --allow-extra-chr --bfile crabsplink --pca --out crabsplinkPCA
+
+ ./admixture crabsplink.ped 3
+ ./admixture crabsplink.ped 4
+ ./admixture crabsplink.ped 5
+./admixture crabsplink.ped --cv=10 -B2000 --seed=X
+
+
+#Subset for just Montivagus/Lirrangesis (Analysis 2)
+bcftools view -s ^Choloensis,Rukwa_3,Rukwa_2,Rukwa_1,Kalembo_1,Nkokwa_2,Itupi_1,Kalobe_6,Kalobe_1,Kalobe_3,Kalobe_2,Kalobe_19,Ilamba_16,Kalobe_5,Ilamba_14,Kalobe_13,Kalobe_15,Kalobe_17,Ngugwisi_1,Ilamba_15,Ilamba_7,Ilamba_13,Kalobe_11,Ngugwisi_4,Ilamba_8,Ngugwisi_2,Kalobe_4,Ngugwisi_5,Ilamba_10,Itupi_2,Mossoko_1,Ilamba_17,Kalobe_14,Kyungululu_1,Itamba_1,Kaombe_1,Congo_1,Congo_3,Congo_4,Congo_2 crabs.vcf.gz > crabs_analysis2.vcf
+
+
+#VCF to plink format and clean up + linkage disequilibirum
+ plink --allow-extra-chr --vcf crabs_analysis2.vcf --double-id --recode12 --allow-no-sex --no-sex --no-parents --make-bed --no-fid --geno 0.9 --maf 0.05 --indep-pairwise 50 2 0.2 --no-pheno --out crabsplink
+
+ #Plink to PCA
+ plink --allow-extra-chr --bfile crabsplink --pca --out crabsplinkPCA
+
+ ./admixture crabsplink.ped 3
+ ./admixture crabsplink.ped 4
+ ./admixture crabsplink.ped 5
+./admixture crabsplink.ped --cv=10 -B2000 --seed=X
+
+
+ #VCF to plink format and clean up including linkage disequilibirum
+ plink --allow-extra-chr --vcf crabs.vcf --double-id --recode12 --allow-no-sex --no-sex --no-parents --make-bed --no-fid --geno 0.9 --maf 0.05 --indep-pairwise 50 2 0.2 --no-pheno --out crabsplink
+ 
+#Plink to PCA
+ plink --allow-extra-chr --bfile crabsplink --pca --out crabsplinkPCA
+ 
+ ./admixture crabsplink.ped 2 
+ ./admixture crabsplink.ped 3
+ ./admixture crabsplink.ped 4
+ ./admixture crabsplink.ped 5
+ ./admixture crabsplink.ped 6
+ ./admixture crabsplink.ped 7
+ ./admixture crabsplink.ped 8
+ ./admixture crabsplink.ped 9 
+ ./admixture crabsplink.ped 10
+ ./admixture crabsplink.ped 11
+ ./admixture crabsplink.ped 12 
+./admixture crabsplink.ped --cv=10 -B2000 --seed=X
+
+
+#Cross Validation
+for K in echo $(seq 12) ; do ./admixture --cv=10 --seed=X crabsplink.ped $K | tee log${K}.out; done
+
+
+grep -h CV log*.out>cross_validation.txt
+done
+
+
+cut -f 1 nameofyourfile.tfam > id_admixture.txt
+done
+
+
+#Remove invariant bias - convert SNPs to phylip format in Mega
+python3 ./ascbias.py -p raxml_snps_test1.phylip -o raxml_snps_test1_invariant_sites_removed.phylip
+
+python3 ./ascbias.py -p crabs.phy -o allcrabs_snps_invariant_sites_removed.phylip
+
+iqtree -s allcrabs_snps_invariant_sites_removed.phylip -m TEST -bb 1000
+
+
+##fineRADstructure
+
+#Step 1: Format VCF from ipyrad for fineRADstructure
+
+./RADpainter hapsFromVCF crabs_without_Choloensis.vcf > crabs_without_Choloensis.txt
+./RADpainter hapsFromVCF crabs_analysis1.vcf > crabs_analysis1.txt
+./RADpainter hapsFromVCF crabs_analysis2.vcf > crabs_analysis2.txt
+
+#Step 2: Reorder loci according to linkage disequilibrium, as no reference genome
+
+Rscript sampleLD.R -s 1 -n 500 crabs_without_Choloensis.txt crabs_without_Choloensis_reordered.txt
+Rscript sampleLD.R -s 1 -n 500 crabs_analysis1.txt crabs_analysis1_reordered.txt
+Rscript sampleLD.R -s 1 -n 500 crabs_analysis2.txt crabs_analysis2_reordered.txt
+
+#Step 3: Calculate the co-ancestry matrix
+
+./RADpainter paint crabs_without_Choloensis_reordered.txt
+./RADpainter paint crabs_analysis1_reordered.txt
+./RADpainter paint crabs_analysis2_reordered.txt
+
+
+#Step 4: Assign individuals to populations
+./finestructure -x 100000 -y 100000 -z 1000 crabs_without_Choloensis_reordered_chunks.out crabs_without_Choloensis_reordered_chunks.mcmc.xml
+./finestructure -x 100000 -y 100000 -z 1000 crabs_analysis1_reordered_chunks.out crabs_analysis1_reordered_chunks.mcmc.xml
+./finestructure -x 100000 -y 100000 -z 1000 crabs_analysis2_reordered_chunks.out crabs_analysis2_reordered_chunks.mcmc.xml
+
+#Step 5: Tree Building
+
+./finestructure -m T -x 10000 crabs_without_Choloensis_reordered_chunks.out crabs_without_Choloensis_reordered_chunks.mcmc.xml crabs_without_Choloensis_reorderedchunks.mcmcTree.xml
+./finestructure -m T -x 10000 crabs_analysis1_reordered_chunks.out crabs_analysis1_reordered_chunks.mcmc.xml crabs_analysis1_reordered_chunks.mcmcTree.xml
+./finestructure -m T -x 10000 crabs_analysis2_reordered_chunks.out crabs_analysis2_reordered_chunks.mcmc.xml crabs_analysis2_reordered_chunks.mcmcTree.xml
+
+#Step 6: Use the fineRADstructurePlot.R in R to generate plots
+#WARNING: The sample Itamba_1 has more than 90% missing data. You may want to exclude this sample from the analysis or adjust your filtering.
+WARNING: The sample Matema_1 has more than 90% missing data. You may want to exclude this sample from the analysis or adjust your filtering.
+WARNING: The sample Mwalalo_2 has more than 90% missing data. You may want to exclude this sample from the analysis or adjust your filtering.
+
+I created a new vcf for all crabs minus the above using...
+
+WARNING: The sample Itamba_1 has more than 90% missing data. You may want to exclude this sample from the analysis or adjust your filtering.
+WARNING: The sample Matema_1 has more than 90% missing data. You may want to exclude this sample from the analysis or adjust your filtering.
+WARNING: The sample Mwalalo_2 has more than 90% missing data. You may want to exclude this sample from the analysis or adjust your filtering.
+
+
+bcftools view -s ^Choloensis,Itamba_1,Matema_1,Mwalalo_2  crabs.vcf.gz > crabs_clean.vcf
+./RADpainter hapsFromVCF crabs_clean.vcf > crabs_clean.txt
+Rscript sampleLD.R -s 1 -n 500 crabs_clean.txt crabs_clean_reordered.txt
+./RADpainter paint crabs_clean_reordered.txt
+./finestructure -x 100000 -y 100000 -z 1000 crabs_clean_reordered_chunks.out crabs_clean_reordered_chunks.mcmc.xml
+./finestructure -m T -x 10000 crabs_clean_reordered_chunks.out crabs_clean_reordered_chunks.mcmc.xml crabs_clean_reordered_chunks.mcmcTree.xml
+
+#The plots are then constructed using the fineRADstructurePlot.R code provided at https://github.com/millanek/fineRADstructure
+
