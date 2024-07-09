@@ -14,9 +14,9 @@ File: params-crabs.txt The ipyrad parameter file (run denovo).
 
 File: crabs.vcf: ipyrad output variant file, 73 specimens including _A.bellarussus_ and outgroup _M.choloensis_
 
-File: crabs_analysis1.vcf ipyrad output variant file, 61 specimens including the _A.montivagus_ group I, _A.montivagus_ group II, and _A.orbitospinus_ groups
+File: crabs_analysis1.vcf ipyrad output variant file, 61 specimens including the _A.montivagus_ group I, _A.montivagus_ group II, and _A.orbitospinus_
 
-File: crabs_analysis2.vcf ipyrad output variant file, 33 specimens including the _A.montivagus_ group I and _A.orbitospinus_ groups
+File: crabs_analysis2.vcf ipyrad output variant file, 33 specimens including the _A.montivagus_ group I and _A.orbitospinus_
 
 File: crabs.snps, ipyrad output SNPs file.
 
@@ -34,19 +34,19 @@ File: Analysis_2_crabsplink.4.P Plink file containing 33 specimens to compile ad
 
 ***
 
+ddRAD_analysis.txt Script used for population structure
+
 Admixture_and_PCA.R The R code used for the analyses of the population structure
 
 fineRADstructure.txt Script used for FineRADstructure analysis
 
 Morphology.R The R code used for the analyses of the morphology
 
-
 ***
 
 **Notes**
 
 ***
-
 
 Analysis 1 refers to _A.montivagus_ group I vs _A.montivagus_ group II vs _A.orbitospinus_
 
