@@ -20,13 +20,13 @@ File: crabs_analysis2.vcf ipyrad output variant file, 33 specimens including the
 
 File: crabs.snps, ipyrad output SNPs file.
 
-File: raxml_snps_invariant_sites_removed.phylip.treefile containing XX specimens, generated from SNPs file, invariant sites removed.
+File: raxml_snps_invariant_sites_removed.phylip.treefile containing 73 specimens, generated from SNPs file, invariant sites removed.
 
 File: Analysis_1_crabsplinkPCA.eigenval containing PCA eigenvalues from 61 specimens 
 
 File: Analysis_2_crabsplinkPCA.eigenval containing PCA eigenvalues from 33 specimens 
 
-File: Analysis_2_crabsplink.4.P containing XX specimens to compile admixture test in analysis 2
+File: Analysis_2_crabsplink.4.P Plink file containing 33 specimens to compile admixture test in analysis 2
 
 ***
 
