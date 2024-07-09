@@ -16,9 +16,9 @@ File: crabs.vcf: ipyrad output variant file, XX specimens including outgroup
 
 File: crabs_clean.vcf ipyrad output variant file, XX specimens excluding outgroup 
 
-File: crabs_analysis1.vcf ipyrad output variant file, XX specimens including the _A.montivagus_ I, _A.montivagus_ II, and _A.orbitospinus_ groups
+File: crabs_analysis1.vcf ipyrad output variant file, XX specimens including the _A.montivagus_ group I, _A.montivagus_ group II, and _A.orbitospinus_ groups
 
-File: crabs_analysis2.vcf ipyrad output variant file, XX specimens including the _A.montivagus_ I and _A.orbitospinus_ groups
+File: crabs_analysis2.vcf ipyrad output variant file, XX specimens including the _A.montivagus_ group I and _A.orbitospinus_ groups
 
 File: crabs.snps, ipyrad output SNPs file.
 
@@ -47,7 +47,7 @@ fineRADstructure.txt
 ***
 
 
-Analysis 1 refers to _A.montivagus_ I vs _A.montivagus_ II vs _A.orbitospinus_
+Analysis 1 refers to _A.montivagus_ group I vs _A.montivagus_ group II vs _A.orbitospinus_
 
-Analysis 2 refers to _A.montivagus_ I vs _A.orbitospinus_
+Analysis 2 refers to _A.montivagus_ group I vs _A.orbitospinus_
 
