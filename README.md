@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/810404708.svg)](https://doi.org/10.5281/zenodo.14037278)
+
 # Evolution of freshwater crabs in the Lake Malawi/Nyasa catchment
 
 Evolution of freshwater crabs paper
